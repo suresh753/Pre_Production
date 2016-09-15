@@ -5,8 +5,8 @@ fail=0
 import yaml
 with open('config.yaml','r') as content:
     data = yaml.load(content)
-Req_Test_Per = data["servers"]["testenv"]
-with open ('log.txt','rt') as in_file:
+Req_Test_Per = data["servers"]["preproduction"]
+with open ('TEST-PreProdEnvTestCases.txt','rt') as in_file:
     for line in in_file:
         lines.append(line.rstrip('\n'))
 index = 0
@@ -28,7 +28,7 @@ Out_Per = (float(total-fail)/total)*100
 print("Percentage :"+str(Out_Per)+"%")
 
 if  Out_Per >= Req_Test_Per:
-    print ("Passed for deploying in testenv")
+    print ("Passed for deploying in env")
 else:
     raise Exception("build failed because of Required Percentage "+str(Req_Test_Per)+"%")
 
